@@ -11,7 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.studentv2.data.Student
 import com.example.studentv2.ui.theme.StudentV2Theme
+import com.example.studentv2.userInterface.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +21,47 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             StudentV2Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+
+                val students = listOf(
+                    Student(
+                        id = 1,
+                        name = "Mirza",
+                        lastName = "Šabanović",
+                        index = "OK/12345",
+                        year = 4,
+                        major = "Informatika I Računarstvo",
+                        dateOfBirth = "12.02.2002"
+
+                    ),
+                    Student(
+                        id = 2,
+                        name = "Eldad",
+                        lastName = "Zulić",
+                        index = "IO/22456",
+                        year = 3,
+                        major = "Informacione Tehnologije",
+                        dateOfBirth = "28.09.2001"
                     )
+                )
+
+                HomeScreen(
+                    students = students
+                )
+
+
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+
+
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun GreetingPreview(
+) {
     StudentV2Theme {
-        Greeting("Android")
+            //HomeScreen()
     }
 }
